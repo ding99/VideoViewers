@@ -26,5 +26,13 @@ namespace TitleViewer
         {
             this.InitializeComponent();
         }
+        private void Key_Down(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                //TODO
+            }
+        }
+
     }
 }

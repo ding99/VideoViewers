@@ -8,10 +8,15 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <TextBlock x:Name="StatusHeader"/>
-        <TextBlock x:Name="StatusMain"/>
-
+    <StackPanel x:Name="Top">
+        <TextBox x:Name="Input" Header="Endpoint" Text="Input endpoint here" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" KeyDown="Key_Down">
+        </TextBox>
+        
+        <TextBlock x:Name="StatusHeader" Text="Message Box" Margin="0,6,0,0"/>
+        <Border Background="Bisque">
+            <TextBlock x:Name="StatusMain" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" TextWrapping="Wrap"/>
+        </Border>
+        
         <ListView x:Name="Titles">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
