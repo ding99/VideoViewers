@@ -39,12 +39,21 @@ namespace TitleViewer
 
             SetSource();
         }
+
+        /// <summary>
+        /// Sort title list
+        /// </summary>
         private void SetSource()
         {
             Titles.ItemsSource = contents = contents.OrderBy(p => p.title).ToList();
             StatusMain.Text = contents.Count().ToString();
         }
 
+        /// <summary>
+        /// Response for input endpoint
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Key_Down(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
@@ -53,6 +62,11 @@ namespace TitleViewer
             }
         }
 
+        /// <summary>
+        /// Jump to title page when a tilte is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Title_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Frame.Navigate(typeof(TitlePage), sender);
