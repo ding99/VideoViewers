@@ -9,28 +9,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-    <StackPanel x:Name="Top">
-        <TextBox x:Name="Input" Header="Endpoint" Text="Input endpoint here" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" KeyDown="Key_Down">
-        </TextBox>
-        
-        <TextBlock x:Name="StatusHeader" Text="Message Box" Margin="0,6,0,0"/>
-        <Border Background="Bisque">
-            <TextBlock x:Name="StatusMain" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" TextWrapping="Wrap"/>
-        </Border>
-        
-        <ListView x:Name="Titles" IsItemClickEnabled="True" Tapped="Title_Tapped">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Content">
-                    <TextBlock x:Name="TTitle" Text="{x:Bind title}" TextWrapping="Wrap"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackPanel x:Name="Top" Margin="6,6,20,6">
+            <TextBox x:Name="Input" Header="Endpoint" Text="Input endpoint here" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" KeyDown="Key_Down"/>
 
+            <TextBlock x:Name="StatusHeader" Text="Message Box" Margin="0,6,0,0"/>
+            <Border Background="Bisque">
+                <TextBlock x:Name="StatusMain" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" TextWrapping="Wrap"/>
+            </Border>
+
+            <ListView x:Name="Titles" IsItemClickEnabled="True" Tapped="Title_Tapped">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Content">
+                        <TextBlock x:Name="TTitle" Text="{x:Bind title}" TextWrapping="Wrap"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </ScrollViewer>
 </Page>
