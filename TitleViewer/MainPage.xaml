@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <ScrollViewer>
     <StackPanel x:Name="Top">
         <TextBox x:Name="Input" Header="Endpoint" Text="Input endpoint here" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" KeyDown="Key_Down">
         </TextBox>
@@ -17,18 +18,19 @@
             <TextBlock x:Name="StatusMain" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" TextWrapping="Wrap"/>
         </Border>
         
-        <ListView x:Name="Titles">
+        <ListView x:Name="Titles" IsItemClickEnabled="True" Tapped="Title_Tapped">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    
+                <DataTemplate x:DataType="local:Content">
+                    <TextBlock x:Name="TTitle" Text="{x:Bind title}" TextWrapping="Wrap"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
