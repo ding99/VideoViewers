@@ -11,12 +11,12 @@
     <ScrollViewer>
         <StackPanel x:Name="Sub" Margin="6,20,6,6">
 
-            <CommandBar x:Name="Commands">
+            <CommandBar x:Name="Commands" OverflowButtonVisibility="Collapsed">
                 <AppBarButton x:Name="Back" Icon="Home" Label="Back" Tapped="{x:Bind Back_Tapped}"/>
                 <AppBarButton x:Name="Next" Icon="Next" Label="Next" Tapped="{x:Bind Next_Tapped}"/>
             </CommandBar>
 
-            <TextBlock x:Name="StatusHeader"/>
+            <TextBlock x:Name="StatusHeader" Text="Message Box"/>
             <Border Background="Bisque">
                 <TextBlock x:Name="StatusSub" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" TextWrapping="Wrap"/>
             </Border>

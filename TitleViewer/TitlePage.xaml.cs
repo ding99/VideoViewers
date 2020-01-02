@@ -38,18 +38,33 @@ namespace TitleViewer
             description.Text = content.description;
             id.Text = content.id;
 
-            StatusSub.Text += " Title# " + (index + 1);
+            StatusSub.Text = " Title# " + (index + 1);
         }
 
         private void Next_Tapped()
         {
-            ;//TODO
+            if (index + 1 < contents.Count)
+                Display(contents[++index]);
+            else
+                StatusSub.Text = "Already the last title!";
         }
 
         private void Back_Tapped()
         {
             if (Frame.CanGoBack)
                 Frame.GoBack();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ListView view = e.Parameter as ListView;
+
+            contents = view.Items.Cast<Content>().ToList();
+            index = view.SelectedIndex;
+
+            Display((Content)view.SelectedItem);
+
+            base.OnNavigatedTo(e);
         }
     }
 }
