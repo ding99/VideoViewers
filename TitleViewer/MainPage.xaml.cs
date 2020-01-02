@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Windows.Data.Json;
+using System.Threading.Tasks;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace TitleViewer
@@ -28,16 +31,6 @@ namespace TitleViewer
         public MainPage()
         {
             InitializeComponent();
-
-            contents = new List<Content> {
-                new Content("Title1", "Bullet1", "Description1", "A1", 10),
-                new Content("Zitle2", "Bullet2", "Description2", "A2", 20),
-                new Content("Title3", "Bullet3", "Description3", "A3", 30),
-                new Content("Title4", "Bullet4", "Description4", "A4", 40),
-                new Content("Title5", "Bullet5", "Description5", "A5", 50)
-            };
-
-            SetSource();
         }
 
         /// <summary>
@@ -54,11 +47,11 @@ namespace TitleViewer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Key_Down(object sender, KeyRoutedEventArgs e)
+        private async void Key_Down(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                GetItems(Input.Text);
+                await GetItems(Input.Text);
             }
         }
 
@@ -72,19 +65,52 @@ namespace TitleViewer
             Frame.Navigate(typeof(TitlePage), sender);
         }
 
-        public void GetItems(string endpoint)
+        /// <summary>
+        /// Get title data via HTTP request
+        /// </summary>
+        /// <param name="endpoint"></param>
+        public async Task GetItems(string endpoint)
         {
-            contents = new List<Content> {
-                new Content("New Title1", "Bullet1", "Description1", "A1", 10),
-                new Content("New Title2", "Bullet2", "Description2", "A2", 20),
-                new Content("New Title3", "Bullet3", "Description3", "A3", 30),
-                new Content("New Title4", "Bullet4", "Description4", "A4", 40),
-                new Content("New Title5", "Bullet5", "Description5", "A5", 50),
-                new Content("New Title6", "Bullet6", "Description6", "A5", 60),
-                new Content("New Title7", "Bullet7", "Description7", "A5", 70)
-            };
+            StatusMain.Text = string.Empty;
+            string data;
 
-            SetSource();
+            try
+            {
+                using (var httpClient = new System.Net.Http.HttpClient())
+                {
+                    var stream = await httpClient.GetStreamAsync(endpoint);
+                    StreamReader reader = new StreamReader(stream);
+                    data = reader.ReadToEnd();
+                }
+
+            }
+            catch (Exception e)
+            {
+                StatusMain.Text = e.Message;
+                return;
+            }
+
+            uint i = 0;
+            try
+            {
+                var cont = JsonValue.Parse(data).GetArray();
+
+                contents = new List<Content>();
+                for (i = 0; i < cont.Count; i++)
+                    contents.Add(new Content(
+                        cont.GetObjectAt(i).GetNamedString("title"),
+                        cont.GetObjectAt(i).GetNamedString("bulletText"),
+                        cont.GetObjectAt(i).GetNamedString("description"),
+                        cont.GetObjectAt(i).GetNamedString("id"),
+                        (int)cont.GetObjectAt(i).GetNamedNumber("runningTime")));
+
+                SetSource();
+            }
+            catch (Exception ex)
+            {
+                StatusMain.Text = "Exception at Title# " + i + ": " + ex.Message;
+            }
+
         }
     }
 }
