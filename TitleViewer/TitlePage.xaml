@@ -1,0 +1,32 @@
+﻿<Page x:Name="SubPage"
+    x:Class="TitleViewer.TitlePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TitleViewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel x:Name="Sub">
+        <CommandBar>
+            <AppBarButton x:Name="Back"/>
+            <AppBarButton x:Name="Next"/>
+        </CommandBar>
+
+        <TextBlock x:Name="StatusName"/>
+        <TextBlock x:Name="StatusSub"/>
+
+        <TextBlock />
+        <TextBlock x:Name="title"/>
+        <TextBlock />
+        <TextBlock x:Name="runningTime"/>
+        <TextBlock />
+        <TextBlock x:Name="id"/>
+        <TextBlock />
+        <TextBlock x:Name="bulletText"/>
+        <TextBlock />
+        <TextBlock x:Name="descriptioin"/>
+
+    </StackPanel>
+</Page>
