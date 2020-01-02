@@ -5,28 +5,33 @@
     xmlns:local="using:TitleViewer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    mc:Ignorable="d" NavigationCacheMode="Enabled"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel x:Name="Sub">
-        <CommandBar>
-            <AppBarButton x:Name="Back"/>
-            <AppBarButton x:Name="Next"/>
-        </CommandBar>
+    <ScrollViewer>
+        <StackPanel x:Name="Sub" Margin="6,20,6,6">
 
-        <TextBlock x:Name="StatusName"/>
-        <TextBlock x:Name="StatusSub"/>
+            <CommandBar x:Name="Commands">
+                <AppBarButton x:Name="Back" Icon="Home" Label="Back" Tapped="{x:Bind Back_Tapped}"/>
+                <AppBarButton x:Name="Next" Icon="Next" Label="Next" Tapped="{x:Bind Next_Tapped}"/>
+            </CommandBar>
 
-        <TextBlock />
-        <TextBlock x:Name="title"/>
-        <TextBlock />
-        <TextBlock x:Name="runningTime"/>
-        <TextBlock />
-        <TextBlock x:Name="id"/>
-        <TextBlock />
-        <TextBlock x:Name="bulletText"/>
-        <TextBlock />
-        <TextBlock x:Name="descriptioin"/>
+            <TextBlock x:Name="StatusHeader"/>
+            <Border Background="Bisque">
+                <TextBlock x:Name="StatusSub" HorizontalAlignment="Stretch" HorizontalTextAlignment="Left" TextWrapping="Wrap"/>
+            </Border>
+        
+        <TextBlock Text="Title" Foreground="Blue" Margin="0,18,0,0"/>
+            <TextBlock x:Name="title" TextWrapping="Wrap"/>
+            <TextBlock Text="Running Time" Foreground="Blue" Margin="0,6,0,0" />
+            <TextBlock x:Name="runningTime" TextWrapping="Wrap"/>
+            <TextBlock Text="Id" Foreground="Blue" Margin="0,18,0,0" />
+            <TextBlock x:Name="id" TextWrapping="Wrap"/>
+            <TextBlock Text="Bullet Text" Foreground="Blue" Margin="0,6,0,0" />
+            <TextBlock x:Name="bulletText" TextWrapping="Wrap"/>
+            <TextBlock Text="Description" Foreground="Blue" Margin="0,6,0,0" />
+            <TextBlock x:Name="description" TextWrapping="Wrap"/>
 
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

@@ -55,7 +55,7 @@ namespace TitleViewer
 
         private void Title_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //TODO
+            Frame.Navigate(typeof(TitlePage), sender);
         }
 
         public void GetItems(string endpoint)

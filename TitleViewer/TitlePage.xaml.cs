@@ -22,9 +22,34 @@ namespace TitleViewer
     /// </summary>
     public sealed partial class TitlePage : Page
     {
+        private List<Content> contents;
+        private int index;
+
         public TitlePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        private void Display(Content content)
+        {
+            title.Text = content.title;
+            runningTime.Text = content.runningTime.ToString();
+            bulletText.Text = content.bulletText;
+            description.Text = content.description;
+            id.Text = content.id;
+
+            StatusSub.Text += " Title# " + (index + 1);
+        }
+
+        private void Next_Tapped()
+        {
+            ;//TODO
+        }
+
+        private void Back_Tapped()
+        {
+            if (Frame.CanGoBack)
+                Frame.GoBack();
         }
     }
 }
